@@ -6,7 +6,8 @@
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development NODE_NO_WARNINGS=1 nodemon",
     "start:prod": "cross-env NODE_ENV=production npm run build && node ./dist/bundle.js",
-    "build": "webpack"
+    "build": "webpack",
+    "lint": "eslint \"src/**/*.ts\" --fix"
   },
   "author": "michael rogov",
   "license": "ISC",
