@@ -1,13 +1,13 @@
 import { IncomingMessage, ServerResponse } from 'http';
 import { UserStore } from '../users/user';
-import { User } from '../users/constants';
-import { getId, isUrlCorrect } from '../utils/requestData';
+import { User, UserInfo } from '../users/constants';
+import { getBody, getId, isUrlCorrect } from '../utils/requestData';
 import { ErrorMessages, HTTPStatusCodes, responseData } from '../utils/constants';
 import { sendResponse } from '../utils/response';
 import ManualError from '../error/manualError';
 export const controller = () => {
   const userStore = new UserStore([]);
-
+  
   return async (req: IncomingMessage, res: ServerResponse): Promise<void> => {
     res.setHeader("Content-Type", 'application/json');
     try {
@@ -40,6 +40,12 @@ export const controller = () => {
           sendResponse(res, responseInfo);
           break;
         case "POST":
+          const user = await getBody(req);
+          const newUser = await userStore.create(user);
+          sendResponse(res, {
+            statusCode: HTTPStatusCodes.CREATED,
+            data: newUser,
+          });
           break;
         case "PUT":
           break;
