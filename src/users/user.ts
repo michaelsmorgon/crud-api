@@ -35,10 +35,23 @@ export class UserStore {
     return new Promise((res, rej) => {
       const userForDeletion = this.userList.find((user) => user.id === id);
       if (userForDeletion) {
-        this.userList = this.userList.filter((data) => data.id === id);
+        this.userList = this.userList.filter((data) => data.id !== id);
         res('Successfully deleted');
       }
       rej(new ManualError(HTTPStatusCodes.NOT_FOUND, ErrorMessages.ID_NOT_FOUND));
+    });
+  }
+
+  async update(id: string, user: UserInfo): Promise<User> {
+    console.log(`Request method: PUT. Id: ${id}. INFO: ${JSON.stringify(user)}`);
+    return new Promise((res, rej) => {
+      const userForUpdating = this.userList.find((user) => user.id === id);
+      if (!userForUpdating) {
+        rej(new ManualError(HTTPStatusCodes.NOT_FOUND, ErrorMessages.ID_NOT_FOUND));
+      }
+      const updatedUser = { ...user, id };
+      this.userList.splice(this.userList.indexOf(userForUpdating!), 1, updatedUser);
+      res(updatedUser);
     });
   }
 }
