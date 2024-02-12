@@ -1,4 +1,4 @@
-import { User } from '../users/constants';
+import { User } from "../users/constants";
 
 export const enum HTTPStatusCodes {
   OK = 200,
@@ -10,16 +10,16 @@ export const enum HTTPStatusCodes {
 }
 
 export enum ErrorMessages {
-  INVALID_METHOD = 'Invalid Method',
-  INVALID_URL = 'Invalid URL',
-  INTERNAL_ERROR = 'Internal server error',
-  INVALID_DATA = 'Invalid user data',
-  INVALID_USER_ID = 'Invalid user id (is not UUID format)',
-  ID_NOT_FOUND = 'User was not found with this id',
+  INVALID_METHOD = "Invalid Method",
+  INVALID_URL = "Invalid URL",
+  INTERNAL_ERROR = "Internal server error",
+  INVALID_DATA = "Invalid user data",
+  INVALID_USER_ID = "Invalid user id (is not UUID format)",
+  ID_NOT_FOUND = "User was not found with this id",
 }
 
 export interface responseData {
-  statusCode: number,
-  data?: User[] | User,
-  message?: string,
-};
+  statusCode: number;
+  data?: User[] | User;
+  message?: string;
+}

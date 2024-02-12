@@ -1,6 +1,6 @@
 export interface UserId {
-  id: string
-};
+  id: string;
+}
 
 export interface UserInfo {
   username: string;
@@ -9,5 +9,5 @@ export interface UserInfo {
 }
 
 export interface User extends UserInfo {
-  id: string
-};
+  id: string;
+}
